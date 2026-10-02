@@ -50,6 +50,7 @@ namespace NGUInjector
         [SerializeField] private bool _snipeBossOnly;
         [SerializeField] private int _combatMode;
         [SerializeField] private bool _allowZoneFallback;
+        [SerializeField] private bool _farmIncompleteSets;
         [SerializeField] private bool _abandonMinors;
         [SerializeField] private int _minorAbandonThreshold;
         [SerializeField] private int _questCombatMode;
@@ -344,6 +345,7 @@ namespace NGUInjector
             AssignValue(ref _snipeZone, other?.SnipeZone, (id) => ZoneHelpers.ZoneList.ContainsKey(id) && !ZoneHelpers.ZoneIsTitan(id));
             _snipeBossOnly = other?.SnipeBossOnly ?? false;
             _allowZoneFallback = other?.AllowZoneFallback ?? false;
+            _farmIncompleteSets = other?.FarmIncompleteSets ?? false;
 
             _adventureTargetItopod = other?.AdventureTargetITOPOD ?? false;
             AssignValue(ref _itopodCombatMode, other?.ITOPODCombatMode, (mode) => mode >= 0 && mode <= 1);
@@ -838,6 +840,17 @@ namespace NGUInjector
             {
                 if (value == _allowZoneFallback) return;
                 _allowZoneFallback = value;
+                SaveSettings();
+            }
+        }
+
+        public bool FarmIncompleteSets
+        {
+            get => _farmIncompleteSets;
+            set
+            {
+                if (value == _farmIncompleteSets) return;
+                _farmIncompleteSets = value;
                 SaveSettings();
             }
         }

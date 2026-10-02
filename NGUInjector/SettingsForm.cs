@@ -686,6 +686,7 @@ namespace NGUInjector
             BeastMode.Checked = newSettings.BeastMode;
             BossesOnly.Checked = newSettings.SnipeBossOnly;
             AllowFallthrough.Checked = newSettings.AllowZoneFallback;
+            FarmIncompleteSets.Checked = newSettings.FarmIncompleteSets;
 
             TargetITOPOD.Checked = newSettings.AdventureTargetITOPOD;
             ITOPODCombatMode.SelectedIndex = newSettings.ITOPODCombatMode;
@@ -1171,6 +1172,12 @@ namespace NGUInjector
         {
             if (_initializing) return;
             Settings.AllowZoneFallback = AllowFallthrough.Checked;
+        }
+
+        private void FarmIncompleteSets_CheckedChanged(object sender, EventArgs e)
+        {
+            if (_initializing) return;
+            Settings.FarmIncompleteSets = FarmIncompleteSets.Checked;
         }
 
         private void GoldItemBox_TextChanged(object sender, EventArgs e) => TryItemBoxTextChanged(_goldControls, out _);

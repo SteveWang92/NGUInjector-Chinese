@@ -11,3 +11,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - "AP 商店免费" toggle makes every in-game AP shop purchase free.
 - "添加 AP" button adds the entered amount to current AP.
+- "按顺序刷未完成套装" adventure option farms the first unlocked zone whose gear set is incomplete.

@@ -235,6 +235,7 @@
             this.BossesOnly = new System.Windows.Forms.CheckBox();
             this.ITOPODBeastMode = new System.Windows.Forms.CheckBox();
             this.AllowFallthrough = new System.Windows.Forms.CheckBox();
+            this.FarmIncompleteSets = new System.Windows.Forms.CheckBox();
             this.TargetITOPOD = new System.Windows.Forms.CheckBox();
             this.label24 = new System.Windows.Forms.Label();
             this.ITOPODCombatMode = new System.Windows.Forms.ComboBox();
@@ -2042,6 +2043,7 @@
             this.tableLayoutPanel18.Controls.Add(this.BossesOnly, 3, 1);
             this.tableLayoutPanel18.Controls.Add(this.ITOPODBeastMode, 3, 3);
             this.tableLayoutPanel18.Controls.Add(this.AllowFallthrough, 4, 1);
+            this.tableLayoutPanel18.Controls.Add(this.FarmIncompleteSets, 4, 0);
             this.tableLayoutPanel18.Controls.Add(this.TargetITOPOD, 0, 3);
             this.tableLayoutPanel18.Controls.Add(this.label24, 1, 3);
             this.tableLayoutPanel18.Controls.Add(this.ITOPODCombatMode, 2, 3);
@@ -2199,6 +2201,13 @@
             this.AllowFallthrough.Name = "AllowFallthrough";
             this.AllowFallthrough.UseVisualStyleBackColor = true;
             this.AllowFallthrough.CheckedChanged += new System.EventHandler(this.AllowFallthrough_CheckedChanged);
+            //
+            // FarmIncompleteSets
+            //
+            ApplyStaticResources(this.FarmIncompleteSets, "FarmIncompleteSets");
+            this.FarmIncompleteSets.Name = "FarmIncompleteSets";
+            this.FarmIncompleteSets.UseVisualStyleBackColor = true;
+            this.FarmIncompleteSets.CheckedChanged += new System.EventHandler(this.FarmIncompleteSets_CheckedChanged);
             // 
             // TargetITOPOD
             // 
@@ -4081,6 +4090,7 @@
         private System.Windows.Forms.CheckBox TargetITOPOD;
         private System.Windows.Forms.CheckBox BeastMode;
         private System.Windows.Forms.CheckBox AllowFallthrough;
+        private System.Windows.Forms.CheckBox FarmIncompleteSets;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox CombatTargetZone;
         private System.Windows.Forms.Label label4;

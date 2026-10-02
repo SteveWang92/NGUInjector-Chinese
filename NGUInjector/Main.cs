@@ -1056,8 +1056,8 @@ namespace NGUInjector
                 if (!Settings.CombatEnabled)
                     return;
 
-                int tempZone = Settings.AdventureTargetITOPOD ? 1000 : Settings.SnipeZone;
-                if (tempZone < 1000 && !CombatManager.IsZoneUnlocked(Settings.SnipeZone))
+                int tempZone = Settings.AdventureTargetITOPOD ? 1000 : Settings.FarmIncompleteSets ? ZoneHelpers.GetFirstIncompleteSetZone() : Settings.SnipeZone;
+                if (tempZone < 1000 && !CombatManager.IsZoneUnlocked(tempZone))
                     tempZone = Settings.AllowZoneFallback ? ZoneHelpers.GetMaxReachableZone(false) : 1000;
 
                 CombatHelpers.IsCurrentlyAdventuring = true;
