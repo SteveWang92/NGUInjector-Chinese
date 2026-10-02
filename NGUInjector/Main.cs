@@ -340,11 +340,18 @@ namespace NGUInjector
             }
 
             if (arbitrary.curArbitraryPoints < _heldAP)
+            {
                 arbitrary.curArbitraryPoints = _heldAP;
+                Character.allArbitrary.updateText();
+            }
             _heldAP = arbitrary.curArbitraryPoints;
         }
 
-        public static void AddAP(long amount) => Character.arbitrary.curArbitraryPoints += amount;
+        public static void AddAP(long amount)
+        {
+            Character.arbitrary.curArbitraryPoints += amount;
+            Character.allArbitrary.updateText();
+        }
 
         public float NakedAdventurePower() => InventoryController.adventureAttackBonus();
 
