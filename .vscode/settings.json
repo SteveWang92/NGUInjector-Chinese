@@ -1,0 +1,11 @@
+{
+  "editor.formatOnSave": false,
+  "files.eol": "\n",
+  "[csharp]": {
+    "editor.defaultFormatter": "ms-dotnettools.csharp"
+  },
+  "[markdown]": {
+    "editor.formatOnSave": false,
+    "editor.defaultFormatter": null
+  }
+}
