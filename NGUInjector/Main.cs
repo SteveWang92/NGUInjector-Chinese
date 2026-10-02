@@ -27,6 +27,7 @@ namespace NGUInjector
         public static SettingsForm settingsForm;
         public const string Version = "4.1.7";
         private static int _furthestZone;
+        private static long _heldAP = -1;
 
         private static string _dir;
         private static string _profilesDir;
@@ -322,7 +323,28 @@ namespace NGUInjector
             }
         }
 
-        public void LateUpdate() => SnipeZone();
+        public void LateUpdate()
+        {
+            HoldAP();
+            SnipeZone();
+        }
+
+        // Restores any AP spent this frame while the free AP shop is on.
+        private static void HoldAP()
+        {
+            var arbitrary = Character.arbitrary;
+            if (!Settings.FreeAPShop)
+            {
+                _heldAP = -1;
+                return;
+            }
+
+            if (arbitrary.curArbitraryPoints < _heldAP)
+                arbitrary.curArbitraryPoints = _heldAP;
+            _heldAP = arbitrary.curArbitraryPoints;
+        }
+
+        public static void AddAP(long amount) => Character.arbitrary.curArbitraryPoints += amount;
 
         public float NakedAdventurePower() => InventoryController.adventureAttackBonus();
 

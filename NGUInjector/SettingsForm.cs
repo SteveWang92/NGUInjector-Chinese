@@ -600,6 +600,7 @@ namespace NGUInjector
             // General Tab
             MasterEnable.Checked = newSettings.GlobalEnabled;
             DisableOverlay.Checked = newSettings.DisableOverlay;
+            FreeAPShop.Checked = newSettings.FreeAPShop;
             MoneyPitRunMode.Checked = newSettings.MoneyPitRunMode;
             AutoFightBosses.Enabled = !newSettings.MoneyPitRunMode;
             AutoFightBosses.Checked = newSettings.AutoFight;
@@ -1515,6 +1516,19 @@ namespace NGUInjector
         {
             if (_initializing) return;
             Settings.DisableOverlay = DisableOverlay.Checked;
+        }
+
+        private void FreeAPShop_CheckedChanged(object sender, EventArgs e)
+        {
+            if (_initializing) return;
+            Settings.FreeAPShop = FreeAPShop.Checked;
+        }
+
+        private void AddAPButton_Click(object sender, EventArgs e)
+        {
+            var amount = (long)AddAPAmount.Value;
+            Main.AddAP(amount);
+            Log($"Added {amount} AP");
         }
 
         private void MoneyPitRunMode_CheckedChanged(object sender, EventArgs e)
