@@ -28,6 +28,7 @@ namespace NGUInjector
         public const string Version = "4.2.0";
         private static int _furthestZone;
         private static long _heldAP = -1;
+        private static Arbitrary _heldArbitrary;
 
         private static string _dir;
         private static string _profilesDir;
@@ -329,7 +330,8 @@ namespace NGUInjector
             SnipeZone();
         }
 
-        // Restores any AP spent this frame while the free AP shop is on.
+        // Restores any AP spent this frame while the free AP shop is on. Loading a save replaces
+        // Character.arbitrary, so a new instance starts from the loaded AP instead.
         private static void HoldAP()
         {
             var arbitrary = Character.arbitrary;
@@ -339,12 +341,13 @@ namespace NGUInjector
                 return;
             }
 
-            if (arbitrary.curArbitraryPoints < _heldAP)
+            if (arbitrary == _heldArbitrary && arbitrary.curArbitraryPoints < _heldAP)
             {
                 arbitrary.curArbitraryPoints = _heldAP;
                 Character.allArbitrary.updateText();
             }
             _heldAP = arbitrary.curArbitraryPoints;
+            _heldArbitrary = arbitrary;
         }
 
         public static void AddAP(long amount)
