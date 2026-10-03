@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [4.2.0] - 2026-10-04
+
 ### Added
 
 - "AP 商店免费" toggle makes every in-game AP shop purchase free.
@@ -23,3 +25,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Documentation challenge example uses the valid `NOEC` code.
+
+[Unreleased]: https://github.com/SteveWang92/NGUInjector-Chinese/compare/v4.2.0...HEAD
+[4.2.0]: https://github.com/SteveWang92/NGUInjector-Chinese/releases/tag/v4.2.0
