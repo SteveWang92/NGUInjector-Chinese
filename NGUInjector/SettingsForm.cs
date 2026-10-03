@@ -116,7 +116,7 @@ namespace NGUInjector
             { "PROTECTED", "已保护" },
             { "CHANGE", "变化" },
             { "VALUE", "价值" },
-            { "NORMALVALUE", "普通价值" }
+            { "NORMALVALUE", "标准化价值" }
         };
 
         private bool _initializing = true;
@@ -600,6 +600,7 @@ namespace NGUInjector
             // General Tab
             MasterEnable.Checked = newSettings.GlobalEnabled;
             DisableOverlay.Checked = newSettings.DisableOverlay;
+            FreeAPShop.Checked = newSettings.FreeAPShop;
             MoneyPitRunMode.Checked = newSettings.MoneyPitRunMode;
             AutoFightBosses.Enabled = !newSettings.MoneyPitRunMode;
             AutoFightBosses.Checked = newSettings.AutoFight;
@@ -685,6 +686,7 @@ namespace NGUInjector
             BeastMode.Checked = newSettings.BeastMode;
             BossesOnly.Checked = newSettings.SnipeBossOnly;
             AllowFallthrough.Checked = newSettings.AllowZoneFallback;
+            FarmIncompleteSets.Checked = newSettings.FarmIncompleteSets;
 
             TargetITOPOD.Checked = newSettings.AdventureTargetITOPOD;
             ITOPODCombatMode.SelectedIndex = newSettings.ITOPODCombatMode;
@@ -1172,6 +1174,12 @@ namespace NGUInjector
             Settings.AllowZoneFallback = AllowFallthrough.Checked;
         }
 
+        private void FarmIncompleteSets_CheckedChanged(object sender, EventArgs e)
+        {
+            if (_initializing) return;
+            Settings.FarmIncompleteSets = FarmIncompleteSets.Checked;
+        }
+
         private void GoldItemBox_TextChanged(object sender, EventArgs e) => TryItemBoxTextChanged(_goldControls, out _);
 
         private void GoldItemBox_KeyDown(object sender, KeyEventArgs e) => ItemBoxKeyDown(e, _goldControls);
@@ -1515,6 +1523,19 @@ namespace NGUInjector
         {
             if (_initializing) return;
             Settings.DisableOverlay = DisableOverlay.Checked;
+        }
+
+        private void FreeAPShop_CheckedChanged(object sender, EventArgs e)
+        {
+            if (_initializing) return;
+            Settings.FreeAPShop = FreeAPShop.Checked;
+        }
+
+        private void AddAPButton_Click(object sender, EventArgs e)
+        {
+            var amount = (long)AddAPAmount.Value;
+            Main.AddAP(amount);
+            Log($"Added {amount} AP");
         }
 
         private void MoneyPitRunMode_CheckedChanged(object sender, EventArgs e)

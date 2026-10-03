@@ -73,7 +73,57 @@ namespace NGUInjector.Managers
 
         private static TitanSnapshotSummary _titanSnapshotSummary = new TitanSnapshotSummary();
 
+        // Non-titan zones whose drops form a gear set, with that set's completion flag.
+        // The Sky has no set of its own and titan sets drop outside regular zone farming.
+        private static readonly KeyValuePair<int, Func<ItemList, bool>>[] _zoneSets =
+        {
+            new KeyValuePair<int, Func<ItemList, bool>>(0, x => x.trainingComplete),
+            new KeyValuePair<int, Func<ItemList, bool>>(1, x => x.sewersComplete),
+            new KeyValuePair<int, Func<ItemList, bool>>(2, x => x.forestComplete),
+            new KeyValuePair<int, Func<ItemList, bool>>(3, x => x.caveComplete),
+            new KeyValuePair<int, Func<ItemList, bool>>(5, x => x.HSBComplete),
+            new KeyValuePair<int, Func<ItemList, bool>>(7, x => x.clockComplete),
+            new KeyValuePair<int, Func<ItemList, bool>>(9, x => x.twoDComplete),
+            new KeyValuePair<int, Func<ItemList, bool>>(10, x => x.ghostComplete),
+            new KeyValuePair<int, Func<ItemList, bool>>(12, x => x.gaudyComplete),
+            new KeyValuePair<int, Func<ItemList, bool>>(13, x => x.megaComplete),
+            new KeyValuePair<int, Func<ItemList, bool>>(15, x => x.beardverseComplete),
+            new KeyValuePair<int, Func<ItemList, bool>>(17, x => x.badlyDrawnComplete),
+            new KeyValuePair<int, Func<ItemList, bool>>(18, x => x.stealthComplete),
+            new KeyValuePair<int, Func<ItemList, bool>>(20, x => x.chocoComplete),
+            new KeyValuePair<int, Func<ItemList, bool>>(21, x => x.edgyComplete),
+            new KeyValuePair<int, Func<ItemList, bool>>(22, x => x.prettyComplete),
+            new KeyValuePair<int, Func<ItemList, bool>>(24, x => x.metaComplete),
+            new KeyValuePair<int, Func<ItemList, bool>>(25, x => x.partyComplete),
+            new KeyValuePair<int, Func<ItemList, bool>>(27, x => x.typoComplete),
+            new KeyValuePair<int, Func<ItemList, bool>>(28, x => x.fadComplete),
+            new KeyValuePair<int, Func<ItemList, bool>>(29, x => x.jrpgComplete),
+            new KeyValuePair<int, Func<ItemList, bool>>(31, x => x.radComplete),
+            new KeyValuePair<int, Func<ItemList, bool>>(32, x => x.schoolComplete),
+            new KeyValuePair<int, Func<ItemList, bool>>(33, x => x.westernComplete),
+            new KeyValuePair<int, Func<ItemList, bool>>(35, x => x.breadverseComplete),
+            new KeyValuePair<int, Func<ItemList, bool>>(36, x => x.that70sComplete),
+            new KeyValuePair<int, Func<ItemList, bool>>(37, x => x.halloweeniesComplete),
+            new KeyValuePair<int, Func<ItemList, bool>>(39, x => x.constructionComplete),
+            new KeyValuePair<int, Func<ItemList, bool>>(40, x => x.duckComplete),
+            new KeyValuePair<int, Func<ItemList, bool>>(41, x => x.netherComplete),
+            new KeyValuePair<int, Func<ItemList, bool>>(43, x => x.pirateComplete),
+        };
+
         public static bool ZoneIsTitan(int zone) => Array.IndexOf(TitanZones, zone) >= 0;
+
+        public static int GetFirstIncompleteSetZone()
+        {
+            var itemList = _character.inventory.itemList;
+            foreach (var zoneSet in _zoneSets)
+            {
+                if (!CombatManager.IsZoneUnlocked(zoneSet.Key))
+                    break;
+                if (!zoneSet.Value(itemList))
+                    return zoneSet.Key;
+            }
+            return GetMaxReachableZone(false);
+        }
 
         public static bool IsVersionedTitan(int titanIndex) => titanIndex >= 5 && titanIndex <= 11;
 

@@ -48,8 +48,8 @@ namespace NGUInjector.Managers
             }
             else if (Settings.CombatEnabled)
             {
-                // Don't quest if combat is enabled, the snipe zone is unlocked, not farming ITOPOD and Fallthrough is not allowed
-                var isSniping = CombatManager.IsZoneUnlocked(Settings.SnipeZone) && !Settings.AdventureTargetITOPOD && !Settings.AllowZoneFallback;
+                // Don't quest if combat is enabled, not farming ITOPOD, and either farming incomplete sets or the snipe zone is unlocked with Fallthrough not allowed
+                var isSniping = !Settings.AdventureTargetITOPOD && (Settings.FarmIncompleteSets || CombatManager.IsZoneUnlocked(Settings.SnipeZone) && !Settings.AllowZoneFallback);
 
                 if (isSniping)
                 {

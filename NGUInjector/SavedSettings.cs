@@ -50,6 +50,7 @@ namespace NGUInjector
         [SerializeField] private bool _snipeBossOnly;
         [SerializeField] private int _combatMode;
         [SerializeField] private bool _allowZoneFallback;
+        [SerializeField] private bool _farmIncompleteSets;
         [SerializeField] private bool _abandonMinors;
         [SerializeField] private int _minorAbandonThreshold;
         [SerializeField] private int _questCombatMode;
@@ -107,6 +108,7 @@ namespace NGUInjector
         [SerializeField] private int _titanCombatMode;
         [SerializeField] private bool _titanBeastMode;
         [SerializeField] private bool _disableOverlay;
+        [SerializeField] private bool _freeAPShop;
         [SerializeField] private bool _moneyPitRunMode;
         [SerializeField] private int _yggSwapThreshold;
         [SerializeField] private int[] _blacklistedBosses;
@@ -276,6 +278,7 @@ namespace NGUInjector
         {
             _globalEnabled = other?.GlobalEnabled ?? false;
             _disableOverlay = other?.DisableOverlay ?? false;
+            _freeAPShop = other?.FreeAPShop ?? false;
             _moneyPitRunMode = other?.MoneyPitRunMode ?? false;
             _autoFight = other?.AutoFight ?? false;
             _autoBuyEm = other?.AutoBuyEM ?? false;
@@ -342,6 +345,7 @@ namespace NGUInjector
             AssignValue(ref _snipeZone, other?.SnipeZone, (id) => ZoneHelpers.ZoneList.ContainsKey(id) && !ZoneHelpers.ZoneIsTitan(id));
             _snipeBossOnly = other?.SnipeBossOnly ?? false;
             _allowZoneFallback = other?.AllowZoneFallback ?? false;
+            _farmIncompleteSets = other?.FarmIncompleteSets ?? false;
 
             _adventureTargetItopod = other?.AdventureTargetITOPOD ?? false;
             AssignValue(ref _itopodCombatMode, other?.ITOPODCombatMode, (mode) => mode >= 0 && mode <= 1);
@@ -836,6 +840,17 @@ namespace NGUInjector
             {
                 if (value == _allowZoneFallback) return;
                 _allowZoneFallback = value;
+                SaveSettings();
+            }
+        }
+
+        public bool FarmIncompleteSets
+        {
+            get => _farmIncompleteSets;
+            set
+            {
+                if (value == _farmIncompleteSets) return;
+                _farmIncompleteSets = value;
                 SaveSettings();
             }
         }
@@ -1447,6 +1462,17 @@ namespace NGUInjector
             {
                 if (value == _disableOverlay) return;
                 _disableOverlay = value;
+                SaveSettings();
+            }
+        }
+
+        public bool FreeAPShop
+        {
+            get => _freeAPShop;
+            set
+            {
+                if (value == _freeAPShop) return;
+                _freeAPShop = value;
                 SaveSettings();
             }
         }

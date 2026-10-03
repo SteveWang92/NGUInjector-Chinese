@@ -1,0 +1,12 @@
+{
+  "appName": "NGUInjector",
+  "repo": "SteveWang92/NGUInjector-Chinese",
+  "versionFiles": [
+    {
+      "path": "NGUInjector/Main.cs",
+      "type": "regex",
+      "pattern": "public const string Version = \"([^\"]*)\";"
+    }
+  ],
+  "afterShip": "Build the release package from the tag and attach it: check out the tag, run the Visual Studio MSBuild with /restore /p:Configuration=Release on NGUInjector/NGUInjector.csproj, zip NGUInjector/bin/Release/dist with dist/ as the top-level folder into NGUInjector-vX.Y.Z.zip, then gh release upload vX.Y.Z NGUInjector-vX.Y.Z.zip --repo SteveWang92/NGUInjector-Chinese. Return to dev afterwards."
+}

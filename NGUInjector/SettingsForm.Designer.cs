@@ -40,6 +40,9 @@
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.MasterEnable = new System.Windows.Forms.CheckBox();
             this.DisableOverlay = new System.Windows.Forms.CheckBox();
+            this.FreeAPShop = new System.Windows.Forms.CheckBox();
+            this.AddAPAmount = new System.Windows.Forms.NumericUpDown();
+            this.AddAPButton = new System.Windows.Forms.Button();
             this.UnloadButton = new System.Windows.Forms.Button();
             this.UnloadSafety = new System.Windows.Forms.CheckBox();
             this.VersionLabel = new System.Windows.Forms.Label();
@@ -232,6 +235,7 @@
             this.BossesOnly = new System.Windows.Forms.CheckBox();
             this.ITOPODBeastMode = new System.Windows.Forms.CheckBox();
             this.AllowFallthrough = new System.Windows.Forms.CheckBox();
+            this.FarmIncompleteSets = new System.Windows.Forms.CheckBox();
             this.TargetITOPOD = new System.Windows.Forms.CheckBox();
             this.label24 = new System.Windows.Forms.Label();
             this.ITOPODCombatMode = new System.Windows.Forms.ComboBox();
@@ -452,6 +456,7 @@
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DiggerCap)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AddAPAmount)).BeginInit();
             this.tableLayoutPanel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SpaghettiCap)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CounterfeitCap)).BeginInit();
@@ -637,6 +642,9 @@
             this.tableLayoutPanel2.SetColumnSpan(this.flowLayoutPanel2, 3);
             this.flowLayoutPanel2.Controls.Add(this.MasterEnable);
             this.flowLayoutPanel2.Controls.Add(this.DisableOverlay);
+            this.flowLayoutPanel2.Controls.Add(this.FreeAPShop);
+            this.flowLayoutPanel2.Controls.Add(this.AddAPAmount);
+            this.flowLayoutPanel2.Controls.Add(this.AddAPButton);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
             // 
             // MasterEnable
@@ -652,6 +660,41 @@
             this.DisableOverlay.Name = "DisableOverlay";
             this.DisableOverlay.UseVisualStyleBackColor = true;
             this.DisableOverlay.CheckedChanged += new System.EventHandler(this.DisableOverlay_CheckedChanged);
+            //
+            // FreeAPShop
+            //
+            ApplyStaticResources(this.FreeAPShop, "FreeAPShop");
+            this.FreeAPShop.Name = "FreeAPShop";
+            this.FreeAPShop.UseVisualStyleBackColor = true;
+            this.FreeAPShop.CheckedChanged += new System.EventHandler(this.FreeAPShop_CheckedChanged);
+            //
+            // AddAPAmount
+            //
+            ApplyStaticResources(this.AddAPAmount, "AddAPAmount");
+            this.AddAPAmount.Increment = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.AddAPAmount.Maximum = new decimal(new int[] {
+            1000000000,
+            0,
+            0,
+            0});
+            this.AddAPAmount.Name = "AddAPAmount";
+            this.AddAPAmount.ThousandsSeparator = true;
+            this.AddAPAmount.Value = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            //
+            // AddAPButton
+            //
+            ApplyStaticResources(this.AddAPButton, "AddAPButton");
+            this.AddAPButton.Name = "AddAPButton";
+            this.AddAPButton.UseVisualStyleBackColor = true;
+            this.AddAPButton.Click += new System.EventHandler(this.AddAPButton_Click);
             // 
             // UnloadButton
             // 
@@ -2000,6 +2043,7 @@
             this.tableLayoutPanel18.Controls.Add(this.BossesOnly, 3, 1);
             this.tableLayoutPanel18.Controls.Add(this.ITOPODBeastMode, 3, 3);
             this.tableLayoutPanel18.Controls.Add(this.AllowFallthrough, 4, 1);
+            this.tableLayoutPanel18.Controls.Add(this.FarmIncompleteSets, 4, 0);
             this.tableLayoutPanel18.Controls.Add(this.TargetITOPOD, 0, 3);
             this.tableLayoutPanel18.Controls.Add(this.label24, 1, 3);
             this.tableLayoutPanel18.Controls.Add(this.ITOPODCombatMode, 2, 3);
@@ -2157,6 +2201,13 @@
             this.AllowFallthrough.Name = "AllowFallthrough";
             this.AllowFallthrough.UseVisualStyleBackColor = true;
             this.AllowFallthrough.CheckedChanged += new System.EventHandler(this.AllowFallthrough_CheckedChanged);
+            //
+            // FarmIncompleteSets
+            //
+            ApplyStaticResources(this.FarmIncompleteSets, "FarmIncompleteSets");
+            this.FarmIncompleteSets.Name = "FarmIncompleteSets";
+            this.FarmIncompleteSets.UseVisualStyleBackColor = true;
+            this.FarmIncompleteSets.CheckedChanged += new System.EventHandler(this.FarmIncompleteSets_CheckedChanged);
             // 
             // TargetITOPOD
             // 
@@ -3773,6 +3824,7 @@
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DiggerCap)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AddAPAmount)).EndInit();
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SpaghettiCap)).EndInit();
@@ -4038,6 +4090,7 @@
         private System.Windows.Forms.CheckBox TargetITOPOD;
         private System.Windows.Forms.CheckBox BeastMode;
         private System.Windows.Forms.CheckBox AllowFallthrough;
+        private System.Windows.Forms.CheckBox FarmIncompleteSets;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox CombatTargetZone;
         private System.Windows.Forms.Label label4;
@@ -4081,6 +4134,9 @@
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.ComboBox ITOPODCombatMode;
         private System.Windows.Forms.CheckBox DisableOverlay;
+        private System.Windows.Forms.CheckBox FreeAPShop;
+        private System.Windows.Forms.NumericUpDown AddAPAmount;
+        private System.Windows.Forms.Button AddAPButton;
         private System.Windows.Forms.TabPage tabPage10;
         private System.Windows.Forms.CheckBox AutoMoneyPit;
         private System.Windows.Forms.CheckBox AutoDailySpin;
