@@ -2,21 +2,19 @@
 
 [中文说明 / Chinese README](README.zh-CN.md)
 
-NGUInjector is an automation platform for the steam version of NGU Idle.
+NGUInjector is an automation platform for the Steam version of NGU Idle. This edition has a Chinese settings form and in-game messages, adds features of its own, and stays compatible with upstream settings and profiles. The settings form is in Chinese; the option names below are the English originals, in the same order as the form.
 
 # Instructions
 
-Releases can be found in the releases section of the github page [here](https://github.com/rus9384/NGUInjector/releases). Do not download the source code archive, instead download the zip file with the release version in the name (dist_4.1.0.zip for example). Extract the downloaded archive to a directory of your choice. To start automation, run inject.bat in the extracted folder when NGU Idle is open.
+Download `NGUInjector-vX.Y.Z.zip` from the [releases page](https://github.com/SteveWang92/NGUInjector-Chinese/releases). Do not download the source code archive. Extract the archive to a new directory. To start automation, run `dist/inject.bat` while NGU Idle is open.
 
 You'll know the injection has worked if you see the following in the upper left portion of NGU.
 
 ![Injected](https://i.imgur.com/9liKClh.png)
 
-To upgrade to a new release, unload the injector from the General Settings page and then inject the new version.
+To upgrade to a new release, unload the injector from the General Settings page, extract the new version to a new directory and inject it.
 
 # Configuration
-
-**IMPORTANT NOTE** For those upgrading from an older version of NGUInjector (< 4.1.0), your profiles using "Rebirth" section will need to be updated according to the new format. See the allocation section for more information.
 
 After injecting the dll, a new folder will be created in your AppData directory called NGUInjector (full path is %UserProfile%\AppData\LocalLow\NGUInjector). Settings files will be automatically written to this directory. The following files are of interest:
 
@@ -34,12 +32,11 @@ A logs folder will also be created with the following files:
 - **loot.log** - Logs all the loot dropped by enemies.
 - **inject.log** - Logs general information about the injector
 - **combat.log** - Logs information from the combat algorithm
-- **allocation.log** - Logs information about allocating energy/magic/gear/diggers
 - **pitspin.log** - Logs important things like fruit harvests, money pit, daily spin. This log file will not be overwritten.
 - **cards.log** - Logs information about cast and trashed cards. This log file will not be overwritten.
 - **debug.log** - Logs information about errors. If your settings profile does not work, check this file.
 
-Saving settings.json, zoneOverrides.json, or any profile will automatically reload the settings in the Injector. Reloading the game isn't necessary
+Saving settings.json, zoneOverrides.json, or any profile will automatically reload the settings in the Injector. Reloading the game isn't necessary.
 
 # Settings.json Configurations
 
@@ -62,11 +59,13 @@ An in game menu can be opened using the F1 button.
 
 - **Master Switch** - If turned off, will disable all automation
 - **Disable Overlay** - If switched on, will disable the in-game overlay.
+- **Free AP Shop** - In-game AP shop purchases no longer deduct AP. A purchase still requires enough AP to cover the price. Only the local save is affected; Steam purchases are not.
+- **Add AP** - Adds the amount entered next to the button to current AP.
 
 - **Money Pit Run Mode** - This mode automatically tosses gold into the Money Pit and performs rebirths to maximize the levels gained from the Money Pit.
 - **Auto Fight Bosses** - Automatically nuke/fight bosses.
 - **Auto Buy Energy/Magic/R3** - Automatically spend EXP on Energy/Magic/R3 based on the custom caps set by the user on their respective tabs. Will buy stats all at once after the total of all custom caps are met (including Adventure Stats if enabled).
-- **Auto Buy Adventure Stats** - Automatically spend EXP on Adventure Atats based on the custom caps set by the user in the "Adventure Stats" tab. Will buy stats all at once after the total of all custom caps are met (including Energy/Magic/R3 if enabled).
+- **Auto Buy Adventure Stats** - Automatically spend EXP on Adventure Stats based on the custom caps set by the user in the "Adventure Stats" tab. Will buy stats all at once after the total of all custom caps are met (including Energy/Magic/R3 if enabled).
 
 - **Auto Buy Consumables** - Set this to true to have the injector auto purchase any consumables your profile is configured to use that you do not own. Will only buy consumables if you have the AP to purchase them.
 - **Use Consumables if already running** - If this is false, consumables in the consumable breakpoint will NOT be used if the consumable in question has time remaining. See section on Consumables below for more details.
@@ -90,7 +89,7 @@ An in game menu can be opened using the F1 button.
 - **Manage Beards** - Manage beards based on breakpoints in your selected allocation file.
 
 - **Manage Diggers** - Manage diggers based on breakpoints in your selected allocation file.
-- **Auto Upgrade Diggers** - Automatically upgrades your cheapest diggers when you have money available. Respects your money pit threshold and wont buy underneath it.
+- **Auto Upgrade Diggers** - Automatically upgrades your cheapest diggers when you have money available. Respects your money pit threshold and won't buy underneath it.
 - **Limit Diggers to X % of GPS** - Percent of Gross GPS to use on diggers.
 
 - **Manage Gear** - Manage gear based on breakpoints in your selected allocation file.
@@ -153,7 +152,7 @@ An in game menu can be opened using the F1 button.
   - **Titan** - Mark titans you wish to fight and swap gear for.
   - **Version** - Allows you to quickly change the titan version.
 - **Combat Mode** - Select one of the following options:
-  - **Idle** - Will just idle the zone. *WALDERP, THE GODMOTHER, and THE EXILE will ALWAYS use Offensive setting instead of Idle.*
+  - **Idle** - Will just idle the zone. *WALDERP and THE GODMOTHER will ALWAYS use Offensive setting instead of Idle.*
   - **Snipe** - Waits for the full HP before fights. Precasts buffs and waits until all moves are off cooldowns. Will try to block and paralyze a lot, while using Beast Mode cautiously.
   - **Defensive** - Waits for 80% HP before fights. Does not precast buffs. Uses Beast Mode a bit less cautiously than Snipe mode.
   - **Offensive** - Waits for 60% HP before fights. Does not precast buffs. Uses block only for special moves or if the next hit is expected to be fatal. Uses Beast Mode a lot.
@@ -170,11 +169,12 @@ An in game menu can be opened using the F1 button.
   - **Snipe** - Waits for the full HP before fights. Precasts buffs and waits until all moves are off cooldowns. Will try to block and paralyze a lot, while using Beast Mode cautiously.
   - **Defensive** - Waits for 80% HP before fights. Does not precast buffs. Uses Beast Mode a bit less cautiously than Snipe mode.
   - **Offensive** - Waits for 60% HP before fights. Does not precast buffs. Uses block only for special moves or if the next hit is expected to be fatal. Uses Beast Mode a lot. Aggressively uses Paralyze against Paralyze type enemies.
-  - **One-shot** - Does not use any buffs. Uses only Regular Attack.
+  - **One-shot** - Does not use any buffs. Enables Beast Mode and uses only Regular Attack.
 - **Beast Mode** - Whether to use Beast Mode or not while in *idle combat*.
 - **Target Zone** - The target zone to snipe/do combat in.
 - **Bosses Only** - If enabled, will only fight bosses when doing combat. Good for zone sniping.
 - **Allow Fallthrough** - If set to true, combat will use the highest unlocked zone you have until the target zone is unlocked.
+- **Farm Incomplete Sets in Order** - Ignores the target zone and farms the first unlocked zone, in zone order, whose gear set is not complete yet. Once every unlocked zone's set is complete, uses the highest unlocked zone.
 
 - **ITOPOD Settings** - Settings below this apply only to ITOPOD combat.
 - **ITOPOD** - If selected, will fight in ITOPOD regardless of chosen target zone. Titan combat takes precedence over this setting.
@@ -210,7 +210,7 @@ An in game menu can be opened using the F1 button.
 - **Use Butter on Majors** - If enabled, will attempt to butter Major Quests.
 - **Manual Minors** - If enabled, will manual Minor Quests as well as Majors.
 - **Use Butter on Minors** - If enabled, will attempt to butter Minor Quests.
-- **Roll Fifty Item Minors** - If enabled, will skip Minor Quests that require more than 50 items. Takes progress into account. For example, if the progress is 3/54, it will skip the Minor Quest. Buf if the progress is 4/54, it will not skip. 
+- **Roll Fifty Item Minors** - If enabled, will skip Minor Quests that require more than 50 items. Takes progress into account. For example, if the progress is 3/54, it will skip the Minor Quest. But if the progress is 4/54, it will not skip.
 - **Abandon Minor Quests** - If enabled, and Minor Quest progress is below the Minor Quest threshold, the Minor Quest will be abandoned and a Major Quest will be picked up.
 - **Abandon Minor Quest for Major at a Threshold (%)** - Quest progress until which it's acceptable to abandon Minor Quests.
 - **Swap Loadout for Quests** - Equip the gear in Quest Loadout when engaged in Manual questing
@@ -220,7 +220,7 @@ An in game menu can be opened using the F1 button.
   - **Snipe** - Waits for the full HP before fights. Precasts buffs and waits until all moves are off cooldowns. Will try to block and paralyze a lot, while using Beast Mode cautiously.
   - **Defensive** - Waits for 80% HP before fights. Does not precast buffs. Uses Beast Mode a bit less cautiously than Snipe mode.
   - **Offensive** - Waits for 60% HP before fights. Does not precast buffs. Uses block only for special moves or if the next hit is expected to be fatal. Uses Beast Mode a lot. Aggressively uses Paralyze against Paralyze type enemies.
-  - **One-shot** - Does not use any buffs. Uses only Regular Attack.
+  - **One-shot** - Does not use any buffs. Enables Beast Mode and uses only Regular Attack.
 - **Beast Mode** - Whether to use Beast Mode or not while in *idle combat*.
 
 ![Wishes](https://i.imgur.com/fXWD2CL.png)
@@ -233,7 +233,7 @@ An in game menu can be opened using the F1 button.
 - **Allocation Mode** - select one of the following options:
   - **Default** - Will prioritize Wishes by their index.
   - **Cheapest** - Will prioritize Wishes that require the least resources to finish.
-  - **Fastest** - Will prioritize Wishes that can be finishes as soon as possible.
+  - **Fastest** - Will prioritize Wishes that can be finished as soon as possible.
   - **Balanced** - If multiple Wish slots are available, will use one slot for the cheapest non-blacklisted wish. The remaining slots are used for the cheapest Wishes that can't be speed capped.
 - **Priority Wishes** - The Wishes to prioritize for the available wish slots. If there are open slots remaining after all prioritized Wishes are assigned, other available Wishes will be assigned to open slots ordered by the method outlined above.
   - **Soft Priorities** - If enabled, will prioritize Wishes by the method above, and if there is a tie, prioritize a Wish closer to the top of priorities list. If disabled, will ignore the settings above for Wishes in this list.
@@ -241,8 +241,8 @@ An in game menu can be opened using the F1 button.
 
 ![The Pit](https://i.imgur.com/mrPmWmM.png)
 
-- **Auto Daily Spin** - Automatically do Daily Ppin and log the result to the loot.log file.
-- **Auto Money Pit** - Automatically throw money into the Money Pit if the Money Pit Threshold is met. Logs the result to the loot.log file.
+- **Auto Daily Spin** - Automatically do the Daily Spin and log the result to the pitspin.log file.
+- **Auto Money Pit** - Automatically throw money into the Money Pit if the Money Pit Threshold is met. Logs the result to the pitspin.log file.
 - **Predict Money Pit Outcome** - If enabled then right before throwing money into the Money Pit, it will inspect the Money Pit reward and behave accordingly. If the next reward is a Little Iron Pill, it will enable the Blood Digger and invest all Magic into Blood Rituals. If the next reward is a little Pomegranate, it will equip Yggdrasil loadout.
 - **Put Items out of Daycare** - if enabled, it will put items out of Daycare to maximize the number of items in the Items for Shockwave list that will be hit by a Shockwave. Does nothing if Money Pit prediction is disabled.
 - **Money Pit Threshold** - The amount of gold to wait for to throw gold into the Money Pit.
@@ -261,7 +261,7 @@ An in game menu can be opened using the F1 button.
   - **"TIER"** - The card tier. (high->low)
   - **"COST"** - The total mayo cost. (high->low)
   - **"PROTECTED"** - Whether the card is protected. (protected, then not protected)
-  - **"CHANGE"** - The actual change in the bonus. (e.g. if you're current total Wish bonus is 200%, and the card bonus is 2%, the change will be 1%). (high->low)
+  - **"CHANGE"** - The actual change in the bonus. (e.g. if your current total Wish bonus is 200%, and the card bonus is 2%, the change will be 1%). (high->low)
   - **"VALUE"** - The CHANGE value divided by the card cost. (high->low)
   - **"NORMALVALUE"** - The VALUE, normalized by the card bonus type. (e.g. Gold always gives higher changes than PP, so this will try to account for that). (high->low)
   - **"TYPE:xxxx"** - The card bonus type. Replace 'xxxx' with a specific card bonus type, i.e. one of: "energyNGUSpeed", "magicNGUSpeed", "wandoosSpeed", "augSpeed", "TMSpeed", "hackSpeed", "wishSpeed", "atkDefStats", "adventureStat", "dropChance", "goldDrop", "dayCareSpeed", "PP", "QP".
@@ -274,14 +274,12 @@ The "-ASC" versions of the sort options will sort in the opposite direction.
 This will place any protected cards first. For all the protected cards, it will prioritise advStat, then hackSpeed above other types. All the protected advStat cards are then ordered by the lowest cost, then highest value. Same for protected hackSpeed cards. Same for all other protected cards. The unprotected cards are then sorted in the same manner as the protected cards.
 
 - **Auto Trash Cards** - Automatically yeet cards according to the settings below.
-- **Trash Protected Cards** - If checked, protected cards are yeeted according to your settings. If not checked, no protected cards are ever yeeted, regarless of quality/cost/type settings.
+- **Trash Protected Cards** - If checked, protected cards are yeeted according to your settings. If not checked, no protected cards are ever yeeted, regardless of quality/cost/type settings.
 - **Trash Settings** - Customize which cards you want to trash in this table
   - **Rarity** - trash all cards of this type of this rarity or lower.
   - **Cost** - trash all cards of this type of this cost or lower.
 
 For example, if you set Good-2 on Augment cards, then all unprotected Augment cards of rarity Good or lower will be trashed, as well as all unprotected Augment cards of cost 1 or 2. A Great Augment card of cost 3 won't be trashed.
-
-![Cooking](https://i.imgur.com/undefined.png)
 
 - **Manage Cooking** - Set this to true to have the injector optimize your cooking efficiency.
 - **Swap Loadout for Cooking** - Set this to true to have the injector swap to a Cooking loadout when eating meals.
@@ -289,9 +287,7 @@ For example, if you set Good-2 on Augment cards, then all unprotected Augment ca
 
 # Allocation
 
-Allocation profiles can be found in the profiles folder and contain time breakpoints for configuring your gear, beards, diggers, energy allocation, magic allocation and resource 3 allocation. Sample allocation files can be found in the sampleprofile folder.
-
-[Sample 24 Hour Profile](https://github.com/rvazarkar/NGUInjector/blob/master/NGUInjector/SampleProfiles/24hr_with_gear.json).
+Allocation profiles can be found in the profiles folder and contain time breakpoints for configuring your gear, beards, diggers, energy allocation, magic allocation and resource 3 allocation. Sample allocation files can be found in the sampleprofiles folder of the release, and in [NGUInjector/SampleProfiles](NGUInjector/SampleProfiles) in this repository.
 
 The time portion of every breakpoint refers to rebirth time in seconds. Time can be defined as a simple number (ex: 86400) or as a JSON object:
 
@@ -360,7 +356,7 @@ Available non-cap priorities for Energy are as follows:
 - TM - Allocate energy to energy time machine.
 - BT-X (0-11) - Allocate energy to basic training.
 
-More information on allocation indexes can be found on the [wiki](https://github.com/rvazarkar/NGUInjector/wiki/Allocation-Indexes)
+More information on allocation indexes can be found on the [wiki](https://github.com/rus9384/NGUInjector/wiki/Allocation-Indexes)
 
 ## Magic
 
@@ -394,7 +390,7 @@ Available cap priorities for Magic are as follows:
 - CAPWAN - Use the cap button for wandoos magic.
 - CAPTM - Calculate a cap for magic time machine and attempt to BB it.
 - CAPRIT-X - Calculate a cap for the ritual and allocate.
-- BR - Cast rituals from highest to lowest ignoring rituals you cant afford or will take more than an hour.
+- BR - Cast rituals from highest to lowest ignoring rituals you can't afford or will take more than an hour.
 - BR-X - Cast rituals from highest to lowest that will finish before time specified by X. BR-3600 will cast rituals that will end before the 1 hour mark from your current time.
 
 Available non-cap priorities for Magic are as follows:
@@ -404,7 +400,7 @@ Available non-cap priorities for Magic are as follows:
 - TM - Allocate energy to magic time machine
 - RIT-X - Allocate energy to ritual
 
-More information on allocation indexes can be found on the [wiki](https://github.com/rvazarkar/NGUInjector/wiki/Allocation-Indexes)
+More information on allocation indexes can be found on the [wiki](https://github.com/rus9384/NGUInjector/wiki/Allocation-Indexes)
 
 ## R3
 
@@ -641,7 +637,7 @@ Additionally, you may specify challenges to rebirth into. The following string c
 Challenges must be given a number afterwards to specify which challenge is being completed. Challenges start at 1. Ex:
 
 ```
-"Challenges": ["BASIC-1", "BASIC-2", "TC-1","NOEQ-1"]
+"Challenges": ["BASIC-1", "BASIC-2", "TC-1", "NOEC-1"]
 ```
 
 ## Consumables
@@ -692,7 +688,7 @@ Let's say you have it set to use a two Lucky Charms 1 hour after rebirth.
 
 If the profile initializes before 01:00:00 into the current rebirth, the breakpoint will execute normally at 01:00:00 and if lucky charm is not currently running, you'll use the two Lucky Charms.
 
-However if the profile is inialized AFTER this point (due to restarting the game or reloading the profile in some way) or the consumable is running when the breakpoint executes, there are a few things which can happen:
+However if the profile is initialized AFTER this point (due to restarting the game or reloading the profile in some way) or the consumable is running when the breakpoint executes, there are a few things which can happen:
 
 - First we determine at what point the Lucky Charms *would* have expired if activated normally. In this case it would be two 30m charms activated at 01:00:00, so the expected end time is 02:00:00
 - If the current rebirth time is within 1 minute of the expected end time or later, the consumable will not be used
@@ -711,7 +707,7 @@ However if the profile is inialized AFTER this point (due to restarting the game
 
 Beta potions and MacGuffin Muffins only activate if not already active. MacGuffin Muffin is a special case in that it lasts until the next rebirth AND for 24 hours, whichever is longer. If MacGuffin Muffin has gone through a rebirth, it will no longer be "Active" and will use the same timing logic as other non-beta consumables.
 
-There is **NO** consideration for the possibility that a consumable was used manually, two of the same consumable being in the same breakpoint, multiple breakpoints overlapping, or the fact that alpha and delta potions share a timer. Injector will evaluate whether to use each consumable independant of any other configured consumables or external consumable use.
+There is **NO** consideration for the possibility that a consumable was used manually, two of the same consumable being in the same breakpoint, multiple breakpoints overlapping, or the fact that alpha and delta potions share a timer. Injector will evaluate whether to use each consumable independent of any other configured consumables or external consumable use.
 
 Be mindful of these limitations or your AP will be sad. No one likes sad AP.
 
@@ -719,7 +715,7 @@ Be mindful of these limitations or your AP will be sad. No one likes sad AP.
 
 The optimal zone for gold sniping is calculated using a set of values from pins that show stats necessary to do each zone. If the manual threshold is met for a zone, the script will snipe a boss without fast combat. If the idle threshold is met, the script will snipe a boss using fast combat. Beast Mode will always be turned off for this.
 
-The stats for the zones can be manually overriden using the `zoneOverrides.json` file in the user's directory. For the default stats used see [here](https://github.com/rvazarkar/NGUInjector/wiki/Default-Zone-Stats-for-Sniping)
+The stats for the zones can be manually overridden using the `zoneOverrides.json` file in the user's directory. The default stats are in [defaultZoneStats.json](NGUInjector/defaultZoneStats.json).
 
 # Other Features
 
@@ -729,11 +725,11 @@ Pressing the F3 button will dump a NGU save file as well as a ngusav.es JSON fil
 
 ## Quickload
 
-Pressing the F7 button will load the save created by the quicksave function
+Pressing the F7 button will load the save created by the quicksave function.
 
 ## Dump Equipment to Log
 
-Pressing the F5 button will dump your current equipment to the log file for use in allocation files
+Pressing the F5 button will dump your current equipment to the log file and the clipboard for use in allocation files.
 
 ## Monitor Loot Log File
 
@@ -750,6 +746,26 @@ Pressing the F2 button will globally disable all features of the app until re-en
 ## Auto Merge Boost to 100
 
 Lock a boost in your inventory and the script will automatically merge boosts on to that boost until it hits level 100!
+
+# Building from Source
+
+Build with Visual Studio 2022 or later (with the .NET Framework 4.8 development tools). Unity references are restored from NuGet; `Assembly-CSharp.dll` is the game's own copy, committed beside the project.
+
+```
+MSBuild.exe /restore /p:Configuration=Release NGUInjector\NGUInjector.csproj
+```
+
+The release folder is generated at `NGUInjector/bin/Release/dist`.
+
+# Origin and License
+
+This project builds on the following projects and is licensed under the Apache License 2.0 (see [LICENSE](LICENSE)). Changes are recorded in [CHANGELOG.md](CHANGELOG.md).
+
+- [rvazarkar/NGUInjector](https://github.com/rvazarkar/NGUInjector) - the original project.
+- [rus9384/NGUInjector](https://github.com/rus9384/NGUInjector) - the English line maintained through 4.1.7.
+- [yuigahama0rf/NGUInjector-Chinese](https://github.com/yuigahama0rf/NGUInjector-Chinese) - the Chinese localization and Unity/Mono compatibility work (4.1.7-cn releases).
+
+`smi.exe` and `SharpMonoInjector.dll` in the release come from [SharpMonoInjector](https://github.com/warbler/SharpMonoInjector) under the MIT License (see `injector/LICENSE-SharpMonoInjector.txt`).
 
 # Acknowledgements
 

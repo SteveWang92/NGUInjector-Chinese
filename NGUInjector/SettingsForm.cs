@@ -116,7 +116,7 @@ namespace NGUInjector
             { "PROTECTED", "已保护" },
             { "CHANGE", "变化" },
             { "VALUE", "价值" },
-            { "NORMALVALUE", "普通价值" }
+            { "NORMALVALUE", "标准化价值" }
         };
 
         private bool _initializing = true;

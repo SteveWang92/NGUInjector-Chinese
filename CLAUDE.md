@@ -2,14 +2,29 @@
 
 Steve's fork `SteveWang92/NGUInjector-Chinese` of `yuigahama0rf/NGUInjector-Chinese`, itself a
 Chinese localization of `rus9384/NGUInjector`. It is an automation mod for the Steam game NGU IDLE,
-injected into the running game's Mono runtime. Kept for study and personal use; it has no releases.
+injected into the running game's Mono runtime. It stays a GitHub fork and is released as Steve's
+own project, continuing the upstream version line from 4.1.7.
 
 ## Branches and upstream
 
-- `main` mirrors `upstream/main` exactly and only ever fast-forwards to it. Steve's own work lives
-  on `dev`; feature branches are cut from `dev`.
-- To take upstream changes: fast-forward `main` to `upstream/main`, then merge `main` into `dev`.
-- No `changedeck.json`; nothing here is tagged or released.
+- `main` is the release branch and moves only through the `dev` → `main` release PR, merged with a
+  merge commit so the public `dev` history stays reachable from `main`. Steve's own work lives on
+  `dev`; feature branches are cut from `dev`.
+- To take upstream changes: fetch `upstream` and merge `upstream/main` into `dev` with a merge
+  commit. This upstream sync is the one merge commit allowed besides the release merge.
+- Releases go through `changedeck` (`changedeck.json`). The only version field is `Version` in
+  `NGUInjector/Main.cs`, which the settings form displays. The `v4.1.7-cn.*` tags are
+  `yuigahama0rf`'s releases and stay as upstream history.
+- The release package is built and attached by hand after `ship`; `afterShip` in
+  `changedeck.json` owns the steps.
+
+## Terminology
+
+- UI, `README.zh-CN.md` and `USAGE.zh-CN.md` use one Chinese term per game concept. Titan and zone
+  names follow the third-party Chinese patch the localization was built against. Other fixed
+  choices: Beast Mode 野兽模式, Boost stays `Boost`, Infinity Cube 魔方, Major/Minor Quest
+  主要/次要任务, MacGuffin 麦高芬 (Guff A/B 麦高芬 α/β), Number 增数, ITOPOD 无尽之怒塔.
+- Profile JSON keys and priority codes stay English.
 
 ## Build
 
